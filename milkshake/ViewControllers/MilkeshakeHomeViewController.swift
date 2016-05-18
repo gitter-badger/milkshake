@@ -10,10 +10,11 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class MilkeshakeHomeViewController: MilkshakeViewController, CLLocationManagerDelegate {
+class MilkeshakeHomeViewController: MilkshakeViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
-    var locationManager: CLLocationManager!
     var mapView: MKMapView!
+    var currentLocation: CLLocation!
+    var locationManager: CLLocationManager!
     
     override func loadView() {
         
@@ -21,6 +22,11 @@ class MilkeshakeHomeViewController: MilkshakeViewController, CLLocationManagerDe
         let view = UIView(frame: frame)
         view.backgroundColor = UIColor(red: 255/255, green: 44/255, blue: 0/255, alpha: 1)
         
+        self.mapView = MKMapView(frame: frame)
+        
+        self.mapView.showsUserLocation = true
+        self.mapView.delegate = self
+        view.addSubview(self.mapView)
         
         self.view = view
     }
@@ -32,6 +38,13 @@ class MilkeshakeHomeViewController: MilkshakeViewController, CLLocationManagerDe
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
 
+    }
+    
+    //MARK - mapView Delgate
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        return nil
     }
     
     //MARK - LocationManager Delegate
@@ -68,8 +81,17 @@ class MilkeshakeHomeViewController: MilkshakeViewController, CLLocationManagerDe
             return
         }
         
+        
+        self.currentLocation = loc
         self.locationManager.stopUpdatingLocation()
         print("Found Current Location: \(loc.description)")
+        
+        let center = CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude)
+        self.mapView.centerCoordinate = center
+        
+        let regionRadius: CLLocationDistance = 100
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(center, regionRadius, regionRadius)
+        self.mapView.setRegion(coordinateRegion, animated: true)
         
     }
     
