@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let homeVc = MilkeshakeHomeViewController()
+        let homeVc = MSHomeViewController()
         let navCtr = UINavigationController(rootViewController: homeVc)
         self.window?.rootViewController = navCtr
         self.window?.makeKeyAndVisible()

@@ -1,14 +1,14 @@
 //
-//  MilkshakeCreateProfileViewController.swift
+//  MSCreateProfileViewController.swift
 //  milkshake
 //
-//  Created by Brian Correa on 5/16/16.
+//  Created by Brian Correa on 5/18/16.
 //  Copyright © 2016 milkshake-systems. All rights reserved.
 //
 
 import UIKit
 
-class MilkshakeCreateProfileViewController: MilkshakeViewController, UITextFieldDelegate {
+class MSCreateProfileViewController: MSViewController, UITextFieldDelegate {
 
     var textFields = Array<UITextField>()
     
