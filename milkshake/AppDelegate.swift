@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let homeVc = MSHomeViewController()
+//        homeVc.step = 0
         let navCtr = UINavigationController(rootViewController: homeVc)
         self.window?.rootViewController = navCtr
         self.window?.makeKeyAndVisible()

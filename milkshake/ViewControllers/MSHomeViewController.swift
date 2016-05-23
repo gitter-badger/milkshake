@@ -38,6 +38,8 @@ class MSHomeViewController: MSViewController, CLLocationManagerDelegate, MKMapVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(MSHomeViewController.createGame(_:)))
+        
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
@@ -118,6 +120,16 @@ class MSHomeViewController: MSViewController, CLLocationManagerDelegate, MKMapVi
         }
         
         return nil
+    }
+    
+    //MARK: - My Functions
+    
+    func createGame(btn: UIBarButtonItem){
+        print("createGame")
+        
+        let createGameVc = MSCreateProfileViewController()
+        presentViewController(createGameVc, animated: true, completion: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {
