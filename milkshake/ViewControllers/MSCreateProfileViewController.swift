@@ -67,6 +67,7 @@ class MSCreateProfileViewController: MSViewController, UITextFieldDelegate {
         let btnCancel = UIButton(frame: CGRect(x: padding, y: 4*padding, width: xMark!.size.width, height: xMark!.size.height))
         btnCancel.setImage(xMark, forState: .Normal)
         btnCancel.autoresizingMask = .FlexibleTopMargin
+        btnCancel.addTarget(self, action: #selector(MSCreateProfileViewController.cancel(_:)), forControlEvents: .TouchUpInside)
         view.addSubview(btnCancel)
         
         var y = 0.30*frame.size.height
@@ -125,6 +126,10 @@ class MSCreateProfileViewController: MSViewController, UITextFieldDelegate {
 //        }
         
         self.view = view
+    }
+    
+    func cancel (btn: UIButton){
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
